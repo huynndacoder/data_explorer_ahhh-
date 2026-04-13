@@ -1,0 +1,101 @@
+MA_KH,Recency,Frequency,Monetary,R_Score,F_Score,M_Score,RFM_Score,RFM_Total,Segment,TUOI,GIOI_TINH,NGHENGHIEP,XHKH,Age_Group,VIP_Tier
+KH029569,157,3,315000000.0,4,5,5,455,14,Champions,46,Nam,Công nhân,Bạc,46-55,Platinum
+KH032151,75,3,315000000.0,5,5,5,555,15,Champions,52,Nam,Công nhân,Đồng,46-55,Platinum
+KH036010,144,3,294000000.0,4,5,5,455,14,Champions,46,Nam,Nhân viên văn phòng,Bạc,46-55,Platinum
+KH028535,169,3,294000000.0,4,5,5,455,14,Champions,32,Nam,Quản lý sản xuất,Kim cương,26-35,Platinum
+KH026156,11,3,247800000.0,5,5,5,555,15,Champions,30,Nam,CEO,Bạch kim,26-35,Platinum
+KH035987,51,3,247800000.0,5,5,5,555,15,Champions,43,Nam,Quản lý sản xuất,Kim cương,36-45,Platinum
+KH031183,120,3,225000000.0,4,5,5,455,14,Champions,55,Nam,Quản lý sản xuất,Bạch kim,46-55,Platinum
+KH032087,24,3,225000000.0,5,5,5,555,15,Champions,45,Nữ,Nhân viên văn phòng,Bạc,36-45,Platinum
+KH035364,52,3,225000000.0,5,5,5,555,15,Champions,25,Nữ,Công nhân,Bạc,18-25,Platinum
+KH024856,112,3,225000000.0,4,5,5,455,14,Champions,33,Nam,Công nhân,Đồng,26-35,Platinum
+KH034122,156,3,225000000.0,4,5,5,455,14,Champions,25,Nữ,Nhân viên văn phòng,Bạc,18-25,Platinum
+KH035594,109,3,218400000.0,5,5,5,555,15,Champions,43,Nam,Nhân viên văn phòng,Bạc,36-45,Platinum
+KH035027,128,3,216000000.0,4,5,5,455,14,Champions,49,Nam,Quản lý sản xuất,Kim cương,46-55,Platinum
+KH034010,2,3,216000000.0,5,5,5,555,15,Champions,46,Nữ,CEO,Bạch kim,46-55,Platinum
+KH028473,41,3,216000000.0,5,5,5,555,15,Champions,31,Nam,CEO,Bạch kim,26-35,Platinum
+KH029891,327,2,210000000.0,3,4,5,345,12,Potential Loyalists,39,Nam,CEO,Bạch kim,36-45,Gold
+KH034993,177,2,210000000.0,4,4,5,445,13,Champions,45,Nữ,Cửa hàng bán lẻ,Vàng,36-45,Gold
+KH037462,238,2,210000000.0,4,4,5,445,13,Champions,38,Nữ,Cửa hàng bán lẻ,Vàng,36-45,Gold
+KH030699,356,2,210000000.0,3,4,5,345,12,Potential Loyalists,49,Nam,Kinh doanh tự do,Bạc,46-55,Gold
+KH031021,138,2,210000000.0,4,4,5,445,13,Champions,34,Nam,Bác sĩ,Vàng,26-35,Gold
+KH035704,14,3,210000000.0,5,5,5,555,15,Champions,45,Nam,Công nhân,Đồng,36-45,Platinum
+KH029795,177,2,210000000.0,4,4,5,445,13,Champions,32,Nam,Công nhân,Bạc,26-35,Gold
+KH030343,241,2,210000000.0,3,4,5,345,12,Potential Loyalists,41,Nam,Giáo viên,Đồng,36-45,Gold
+KH030586,114,2,210000000.0,4,4,5,445,13,Champions,39,Nữ,Nhân viên văn phòng,Bạc,36-45,Gold
+KH030844,39,3,210000000.0,5,5,5,555,15,Champions,47,Nam,Kinh doanh tự do,Bạc,46-55,Platinum
+KH030456,105,2,210000000.0,5,4,5,545,14,Champions,31,Nam,Kỹ sư,Vàng,26-35,Platinum
+KH031942,16,2,210000000.0,5,4,5,545,14,Champions,36,Nam,Giáo viên,Bạc,36-45,Platinum
+KH034637,80,2,210000000.0,5,4,5,545,14,Champions,45,Nam,Cửa hàng bán lẻ,Vàng,36-45,Platinum
+KH032055,324,2,210000000.0,3,4,5,345,12,Potential Loyalists,32,Nam,Cửa hàng bán lẻ,Vàng,26-35,Gold
+KH032394,41,2,210000000.0,5,4,5,545,14,Champions,42,Nam,Kỹ sư,Bạc,36-45,Platinum
+KH034428,298,2,210000000.0,3,4,5,345,12,Potential Loyalists,42,Nam,Công nhân,Đồng,36-45,Gold
+KH027455,108,3,210000000.0,5,5,5,555,15,Champions,48,Nam,Nhân viên văn phòng,Bạc,46-55,Platinum
+KH034524,70,2,210000000.0,5,4,5,545,14,Champions,49,Nữ,Cửa hàng bán lẻ,Vàng,46-55,Platinum
+KH033185,133,2,210000000.0,4,4,5,445,13,Champions,59,Nam,Kỹ sư,Vàng,55+,Gold
+KH028552,97,2,210000000.0,5,4,5,545,14,Champions,46,Nam,Kinh doanh tự do,Bạc,46-55,Platinum
+KH028665,65,2,210000000.0,5,4,5,545,14,Champions,33,Nam,Nhân viên văn phòng,Bạc,26-35,Platinum
+KH028083,112,2,210000000.0,4,4,5,445,13,Champions,48,Nam,Kỹ sư,Vàng,46-55,Gold
+KH028326,331,2,210000000.0,3,4,5,345,12,Potential Loyalists,58,Nữ,Giáo viên,Bạc,55+,Gold
+KH032490,158,2,210000000.0,4,4,5,445,13,Champions,47,Nữ,CEO,Bạch kim,46-55,Gold
+KH036575,46,2,210000000.0,5,4,5,545,14,Champions,30,Nam,CEO,Bạch kim,26-35,Platinum
+KH027761,100,2,210000000.0,5,4,5,545,14,Champions,27,Nữ,Kỹ sư,Bạc,26-35,Platinum
+KH036688,363,2,210000000.0,3,4,5,345,12,Potential Loyalists,52,Nam,Nhân viên văn phòng,Bạc,46-55,Gold
+KH037398,11,3,210000000.0,5,5,5,555,15,Champions,47,Nữ,Quản lý sản xuất,Kim cương,46-55,Platinum
+KH029117,112,2,210000000.0,4,4,5,445,13,Champions,37,Nam,Quản lý sản xuất,Kim cương,36-45,Gold
+KH025727,359,2,210000000.0,3,4,5,345,12,Potential Loyalists,41,Nam,CEO,Bạch kim,36-45,Gold
+KH032038,238,2,210000000.0,4,4,5,445,13,Champions,37,Nam,Giáo viên,Bạc,36-45,Gold
+KH031644,109,3,207000000.0,5,5,5,555,15,Champions,55,Nam,Cửa hàng bán lẻ,Vàng,46-55,Platinum
+KH035383,145,3,207000000.0,4,5,5,455,14,Champions,25,Nam,CEO,Bạch kim,18-25,Platinum
+KH036503,151,3,207000000.0,4,5,5,455,14,Champions,38,Nam,Cửa hàng bán lẻ,Vàng,36-45,Platinum
+KH025762,91,3,202500000.0,5,5,5,555,15,Champions,44,Nam,Giáo viên,Đồng,36-45,Platinum
+KH035932,180,3,202500000.0,4,5,5,455,14,Champions,24,Nam,Cửa hàng bán lẻ,Bạc,18-25,Platinum
+KH033445,35,3,201600000.0,5,5,5,555,15,Champions,49,Nữ,Cửa hàng bán lẻ,Vàng,46-55,Platinum
+KH031524,8,3,201600000.0,5,5,5,555,15,Champions,29,Nam,CEO,Bạch kim,26-35,Platinum
+KH035253,59,3,201600000.0,5,5,5,555,15,Champions,44,Nam,Công nhân,Đồng,36-45,Platinum
+KH025309,41,3,201600000.0,5,5,5,555,15,Champions,54,Nam,Kỹ sư,Vàng,46-55,Platinum
+KH025648,15,3,201600000.0,5,5,5,555,15,Champions,58,Nữ,Bác sĩ,Vàng,55+,Platinum
+KH030473,17,2,196000000.0,5,4,5,545,14,Champions,52,Nam,Nhân viên văn phòng,Bạc,46-55,Platinum
+KH029456,111,2,196000000.0,4,4,5,445,13,Champions,27,Nam,Kinh doanh tự do,Bạc,26-35,Gold
+KH025614,15,2,196000000.0,5,4,5,545,14,Champions,41,Nam,Nhân viên văn phòng,Bạc,36-45,Platinum
+KH029213,26,2,196000000.0,5,4,5,545,14,Champions,28,Nam,Giáo viên,Đồng,26-35,Platinum
+KH031038,176,2,196000000.0,4,4,5,445,13,Champions,38,Nam,Cửa hàng bán lẻ,Vàng,36-45,Gold
+KH030247,60,2,196000000.0,5,4,5,545,14,Champions,54,Nữ,Quản lý sản xuất,Kim cương,46-55,Platinum
+KH024919,289,2,196000000.0,3,4,5,345,12,Potential Loyalists,41,Nam,Bác sĩ,Vàng,36-45,Gold
+KH025258,259,2,196000000.0,3,4,5,345,12,Potential Loyalists,29,Nam,Công nhân,Đồng,26-35,Gold
+KH036801,501,2,196000000.0,2,4,5,245,11,At Risk,39,Nam,Kỹ sư,Vàng,36-45,Gold
+KH027405,163,2,196000000.0,4,4,5,445,13,Champions,44,Nam,Kỹ sư,Vàng,36-45,Gold
+KH031603,26,2,196000000.0,5,4,5,545,14,Champions,56,Nam,Công nhân,Đồng,55+,Platinum
+KH036671,14,2,196000000.0,5,4,5,545,14,Champions,25,Nam,Cửa hàng bán lẻ,Bạc,18-25,Platinum
+KH031925,342,2,196000000.0,3,4,5,345,12,Potential Loyalists,38,Nữ,CEO,Bạch kim,36-45,Gold
+KH029665,184,2,196000000.0,4,4,5,445,13,Champions,44,Nam,Công nhân,Bạc,36-45,Gold
+KH028213,169,2,196000000.0,4,4,5,445,13,Champions,24,Nam,Công nhân,Đồng,18-25,Gold
+KH033863,247,2,196000000.0,3,4,5,345,12,Potential Loyalists,24,Nam,CEO,Bạch kim,18-25,Gold
+KH036123,119,2,196000000.0,4,4,5,445,13,Champions,42,Nam,Quản lý sản xuất,Kim cương,36-45,Gold
+KH033620,144,2,196000000.0,4,4,5,445,13,Champions,36,Nữ,Kỹ sư,Bạc,36-45,Gold
+KH025542,169,3,193200000.0,4,5,5,455,14,Champions,32,Nam,Kỹ sư,Bạc,26-35,Platinum
+KH031315,73,3,193200000.0,5,5,5,555,15,Champions,56,Nữ,Kỹ sư,Vàng,55+,Platinum
+KH027915,168,3,193200000.0,4,5,5,455,14,Champions,40,Nam,Kinh doanh tự do,Vàng,36-45,Platinum
+KH028942,6,3,193200000.0,5,5,5,555,15,Champions,37,Nữ,Giáo viên,Đồng,36-45,Platinum
+KH037112,37,3,193200000.0,5,5,5,555,15,Champions,26,Nam,Cửa hàng bán lẻ,Vàng,26-35,Platinum
+KH030671,96,3,193200000.0,5,5,5,555,15,Champions,38,Nữ,CEO,Bạch kim,36-45,Platinum
+KH024293,44,3,189000000.0,5,5,5,555,15,Champions,41,Nam,Nhân viên văn phòng,Bạc,36-45,Platinum
+KH028416,42,2,177000000.0,5,4,5,545,14,Champions,31,Nữ,Giáo viên,Đồng,26-35,Platinum
+KH033388,29,2,177000000.0,5,4,5,545,14,Champions,37,Nam,Công nhân,Đồng,36-45,Platinum
+KH036213,197,2,177000000.0,4,4,5,445,13,Champions,53,Nữ,Giáo viên,Đồng,46-55,Gold
+KH036778,220,2,177000000.0,4,4,5,445,13,Champions,42,Nam,Công nhân,Bạc,36-45,Gold
+KH031580,232,2,177000000.0,4,4,5,445,13,Champions,55,Nam,Nhân viên văn phòng,Bạc,46-55,Gold
+KH030676,325,2,177000000.0,3,4,5,345,12,Potential Loyalists,31,Nam,Công nhân,Đồng,26-35,Gold
+KH035535,283,2,177000000.0,3,4,5,345,12,Potential Loyalists,34,Nam,Giáo viên,Đồng,26-35,Gold
+KH028190,121,2,177000000.0,4,4,5,445,13,Champions,40,Nam,Cửa hàng bán lẻ,Vàng,36-45,Gold
+KH028868,366,2,177000000.0,3,4,5,345,12,Potential Loyalists,48,Nữ,Giáo viên,Bạc,46-55,Gold
+KH029945,135,3,175500000.0,4,5,5,455,14,Champions,24,Nam,CEO,Bạch kim,18-25,Platinum
+KH035595,144,3,175500000.0,4,5,5,455,14,Champions,37,Nam,Kinh doanh tự do,Vàng,36-45,Platinum
+KH033501,300,2,165200000.0,3,4,5,345,12,Potential Loyalists,27,Nam,Công nhân,Đồng,26-35,Gold
+KH033840,69,2,165200000.0,5,4,5,545,14,Champions,45,Nữ,Quản lý sản xuất,Kim cương,36-45,Platinum
+KH035422,263,2,165200000.0,3,4,5,345,12,Potential Loyalists,29,Nam,Kỹ sư,Vàng,26-35,Gold
+KH033727,47,2,165200000.0,5,4,5,545,14,Champions,44,Nam,Kinh doanh tự do,Đồng,36-45,Platinum
+KH032032,148,2,165200000.0,4,4,5,445,13,Champions,49,Nữ,Cửa hàng bán lẻ,Bạc,46-55,Gold
+KH025591,62,2,165200000.0,5,4,5,545,14,Champions,38,Nữ,CEO,Bạch kim,36-45,Platinum
+KH036326,50,2,165200000.0,5,4,5,545,14,Champions,57,Nam,Giáo viên,Bạc,55+,Platinum
+KH027738,35,2,165200000.0,5,4,5,545,14,Champions,34,Nam,Công nhân,Đồng,26-35,Platinum
