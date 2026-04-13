@@ -50,7 +50,7 @@ def load_all_data():
 
 
 def executive_summary(data):
-    """Generate executive summary."""
+    """Create executive summary."""
     print("=" * 80)
     print("EXECUTIVE SUMMARY - INSURANCE DATA ANALYSIS")
     print("=" * 80)
