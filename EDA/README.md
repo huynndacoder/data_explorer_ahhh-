@@ -186,7 +186,7 @@ This dataset contains insurance company data in Vietnamese, including customer i
 pip install pandas numpy matplotlib seaborn
 
 # Run all EDA scripts
-cd /home/huynnz/GetAJob/DataExplorer/EDA
+cd /DataExplorer/EDA
 python run_all_eda.py
 
 # Or run individual scripts
