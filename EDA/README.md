@@ -215,21 +215,3 @@ Nhóm sản phẩm *--1 Bảo Hiểm (Insurance Type)
 
 Kênh bán chi tiết (Channel Detail) *--1 Kênh Bán (Channel Type)
 ```
-
-## Vietnamese Glossary
-
-| Vietnamese | English |
-|------------|---------|
-| Bảo hiểm | Insurance |
-| Công ty | Company |
-| Chi nhánh | Branch |
-| Khách hàng | Customer |
-| Nhân viên | Employee |
-| Đơn hàng | Order |
-| Hợp đồng | Contract |
-| Sản phẩm | Product |
-| Kênh bán | Sales Channel |
-| Xe cơ giới | Vehicle/Motor vehicle |
-| Phòng ban | Department |
-| Xếp hạng | Ranking/Tier |
-| Doanh thu | Revenue |
