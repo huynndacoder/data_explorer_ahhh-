@@ -1,0 +1,98 @@
+MA_KENHBANCHITIET,TENKENHBANCHITIET,MA_KENHBAN
+DC01,Văn phòng giao dịch TQP Hà Nội,DC
+DC02,Văn phòng giao dịch TQP TP.HCM,DC
+DC03,Văn phòng giao dịch TQP Đà Nẵng,DC
+DC04,Văn phòng giao dịch TQP Cần Thơ,DC
+DC05,Văn phòng giao dịch TQP Nghệ An,DC
+DC06,Website chính thức TQP,DC
+DC07,Website chính thức MGV,DC
+DC08,Ứng dụng DBV Connect,DC
+DC09,Hotline TQP 1900.969.690,DC
+DC10,Văn phòng giao dịch TQP Hải Phòng,DC
+DC11,Văn phòng giao dịch TQP Bình Dương,DC
+DC12,Văn phòng giao dịch TQP Quảng Ninh,DC
+DC13,Hotline MGV 1900.969.691,DC
+DC14,Văn phòng giao dịch TQP Thái Nguyên,DC
+DC15,Văn phòng giao dịch TQP Khánh Hoà,DC
+DC16,Văn phòng giao dịch MGV Hà Nội,DC
+DC17,Văn phòng giao dịch MGV TP.HCM,DC
+DC18,Văn phòng giao dịch MGV Đà Nẵng,DC
+DC19,Văn phòng giao dịch MGV Cần Thơ,DC
+DC20,Văn phòng giao dịch MGV Nghệ An,DC
+DC21,Văn phòng giao dịch MGV Hải Phòng,DC
+DC22,Văn phòng giao dịch MGV Bình Dương,DC
+DC23,Văn phòng giao dịch MGV Quảng Ninh,DC
+DC24,Văn phòng giao dịch MGV Thái Nguyên,DC
+DC25,Văn phòng giao dịch MGV Khánh Hoà,DC
+AC01,Đại lý cá nhân TQP I,AC
+AC02,Đại lý cá nhân TQP II,AC
+AC03,Đại lý cá nhân TQP III,AC
+AC04,Đại lý cá nhân TQP IV,AC
+AC05,Đại lý cá nhân TQP V,AC
+AC06,Đại lý tổ chức TQP I,AC
+AC07,Đại lý tổ chức TQP II,AC
+AC08,Đại lý tổ chức TQP III,AC
+AC09,Đại lý tổ chức TQP IV,AC
+AC10,Đại lý tổ chức TQP V,AC
+AC11,Đại lý độc quyền TQP ô tô,AC
+AC12,Đại lý độc quyền TQP xe máy,AC
+AC13,Đại lý độc quyền TQP xe tải,AC
+AC14,Đại lý đa kênh TQP-Bảo Việt,AC
+AC15,Đại lý đa kênh TQP-PTI,AC
+AC16,Đại lý cá nhân MGV I,AC
+AC17,Đại lý tổ chức MGV I,AC
+AC18,Đại lý độc quyền TQP xe máy,AC
+AC19,Đại lý đa kênh TQP-MIC,AC
+AC20,Đại lý cá nhân MGV II,AC
+BC01,Môi giới bảo hiểm ô tô TQP,BC
+BC02,Môi giới bảo hiểm xe máy TQP,BC
+BC03,Môi giới bảo hiểm xe tải TQP,BC
+BC04,Môi giới bảo hiểm TQP Hà Nội,BC
+BC05,Môi giới bảo hiểm TQP TP.HCM,BC
+BC06,Môi giới bảo hiểm xe giá trị cao TQP,BC
+BC07,Môi giới bảo hiểm TQP Đà Nẵng,BC
+BC08,Môi giới bảo hiểm TQP Cần Thơ,BC
+BC09,Môi giới bảo hiểm MGV Nghệ An,BC
+BC10,Môi giới bảo hiểm MGV Hải Phòng,BC
+BA01,VPBank bán bảo hiểm episode,BA
+BA02,Techcombank bán bảo hiểm TQP,BA
+BA03,BIDV bán bảo hiểm TQP,BA
+BA04,Vietcombank bán bảo hiểm TQP,BA
+BA05,MB Bank bán bảo hiểm TQP,BA
+BA06,Sacombank bán bảo hiểm TQP,BA
+BA07,VietinBank bán bảo hiểm TQP,BA
+BA08,TPBank bán bảo hiểm TQP,BA
+BA09,Agribank bán bảo hiểm TQP,BA
+BA10,Shinhan Bank bán bảo hiểm TQP,BA
+POS01,Gara bảo dưỡng Toyota,POS
+POS02,Gara bảo dưỡng Honda,POS
+POS03,Gara bảo dưỡng Hyundai,POS
+POS04,Gara bảo dưỡng Ford,POS
+POS05,Gara bảo dưỡng VinFast,POS
+POS06,Salon ô tô Toyota,POS
+POS07,Salon ô tô Honda,POS
+POS08,Salon ô tô Hyundai,POS
+POS09,Salon ô tô Ford,POS
+POS10,Salon ô tô VinFast,POS
+POS11,Trung tâm đăng kiểm Hà Nội,POS
+POS12,Trung tâm đăng kiểm TP.HCM,POS
+POS13,Trung tâm đăng kiểm Đà Nẵng,POS
+POS14,Trung tâm đăng kiểm Cần Thơ,POS
+POS15,Trung tâm đăng kiểm Thái Nguyên,POS
+EC01,MoMo bán bảo hiểm TQP,EC
+EC02,ZaloPay bán bảo hiểm TQP,EC
+EC03,Viettel Money bán bảo hiểm TQP,EC
+EC04,Tiki bán bảo hiểm TQP,EC
+EC05,Shopee bán bảo hiểm TQP,EC
+EC06,Lazada bán bảo hiểm TQP,EC
+EC07,Website eBaohiem,EC
+EC08,Website baohiemoinECy.vn,EC
+EC09,MoMo bán bảo hiểm TQP xe tải,EC
+EC10,ZaloPay bán bảo hiểm TQP xe máy,EC
+B2B01,Doanh nghiệp Grab mua bảo hiểm TQP,B2B
+B2B02,Doanh nghiệp DHL mua bảo hiểm TQP,B2B
+B2B03,Doanh nghiệp Be Group mua bảo hiểm TQP,B2B
+B2B04,Doanh nghiệp Insight Data mua bảo hiểm TQP,B2B
+B2B05,Doanh nghiệp TNHH Vận tải Sài Gòn mua bảo hiểm TQP,B2B
+B2B06,Doanh nghiệp logistics Giao hàng nhanh mua bảo hiểm TQP,B2B
+B2B07,Doanh nghiệp TNHH Vận tải Minh Anh mua bảo hiểm TQP,B2B

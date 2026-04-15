@@ -1,0 +1,22 @@
+MA_GOISANPHAM,TENGOISANPHAM,MA_NHOMSANPHAM
+GSP01,Bảo hiểm Bắt buộc Trách nhiệm dân sự xe ô tô,XCG_BB
+GSP02,Bảo hiểm Vật chất xe,XCG_TN
+GSP03,Bảo hiểm Tai nạn người ngồi trên xe oto,XCG_TN
+GSP04,Bảo hiểm TNDS của chủ xe đối với hàng hóa vận chuyển trên xe,XCG_TN
+GSP05,Bảo hiểm Bắt buộc Trách nhiệm dân sự xe mô tô - xe máy,XCG_BB
+GSP06,Bảo hiểm Tai nạn người ngồi trên xe mô tô - xe máy,XCG_TN
+GSP07,Bảo hiểm vật chất xe mô tô - xe máy,XCG_TN
+BHAT.1,Cơ bản,BHAT
+BHAT.2,Đồng,BHAT
+BHAT.3,Titan,BHAT
+BHAT.4,Bạc,BHAT
+BHAT.5,Vàng,BHAT
+BHAT.6,Bạch kim,BHAT
+BHAT.7,Kim cương,BHAT
+BHAT.8,VIP,BHAT
+BHSK.1,Cơ bản,BHSK
+BHTN.1,Cơ bản,BHTN
+BHTNĐ.1,Cơ bản,BHTN
+BHHS.1,Cơ bản,BHHS
+BHCN.1,Cơ bản,BHCN
+BHBT.1,Cơ bản,BHBT

@@ -1,0 +1,69 @@
+MA_PB,MA_CN,TEN_PHONGBAN
+TQP-HN-XCG,TQP-HN,Xe cơ giới - Chi nhánh Hà Nội - TQP
+TQP-HCM-XCG,TQP-HCM,Xe cơ giới - Chi nhánh Hồ Chí Minh - TQP
+TQP-DN-XCG,TQP-DN,Xe cơ giới - Chi nhánh Đà Nẵng - TQP
+TQP-HP-XCG,TQP-HP,Xe cơ giới - Chi nhánh Hải Phòng - TQP
+TQP-CT-XCG,TQP-CT,Xe cơ giới - Chi nhánh Cần Thơ - TQP
+TQP-NA-XCG,TQP-NA,Xe cơ giới - Chi nhánh Nghệ An - TQP
+TQP-BD-XCG,TQP-BD,Xe cơ giới - Chi nhánh Bình Dương - TQP
+TQP-QN-XCG,TQP-QN,Xe cơ giới - Chi nhánh Quảng Ninh - TQP
+TQP-TN-XCG,TQP-TN,Xe cơ giới - Chi nhánh Thái Nguyên - TQP
+TQP-KH-XCG,TQP-KH,Xe cơ giới - Chi nhánh Khánh Hoà - TQP
+MGV-HN-XCG,MGV-HN,Xe cơ giới - Chi nhánh Hà Nội - MGV
+MGV-HCM-XCG,MGV-HCM,Xe cơ giới - Chi nhánh Hồ Chí Minh - MGV
+MGV-DN-XCG,MGV-DN,Xe cơ giới - Chi nhánh Đà Nẵng - MGV
+MGV-HP-XCG,MGV-HP,Xe cơ giới - Chi nhánh Hải Phòng - MGV
+MGV-CT-XCG,MGV-CT,Xe cơ giới - Chi nhánh Cần Thơ - MGV
+MGV-NA-XCG,MGV-NA,Xe cơ giới - Chi nhánh Nghệ An - MGV
+MGV-BD-XCG,MGV-BD,Xe cơ giới - Chi nhánh Bình Dương - MGV
+MGV-QN-XCG,MGV-QN,Xe cơ giới - Chi nhánh Quảng Ninh - MGV
+MGV-TN-XCG,MGV-TN,Xe cơ giới - Chi nhánh Thái Nguyên - MGV
+MGV-KH-XCG,MGV-KH,Xe cơ giới - Chi nhánh Khánh Hoà - MGV
+MGV-TCT-XCG,MGV-TCT,Xe cơ giới - Phòng kinh doanh Tổng công ty MGV
+TQP-TCT-XCG,TQP-TCT,Xe cơ giới - Phòng kinh doanh Tổng công ty TQP
+TQP-TCT-GĐ,TQP-TCT,Phòng giám định - Bồi thường Tổng công ty TQP
+TQP-TCT-TBH,TQP-TCT,Phòng tái bảo hiểm - Tổng công ty TQP
+TQP-TCT-TCKT,TQP-TCT,Phòng tài chính - Kế toán -  Tổng công ty TQP
+TQP-TCT-QLRR,TQP-TCT,Phỏng quản lỳ rủi ro -  Tổng công ty TQP
+TQP-TCT-PTKD,TQP-TCT,Phòng phát triển kinh doanh -  Tổng công ty TQP
+TQP-TCT-KPP,TQP-TCT,Phòng kênh phân phối -  Tổng công ty TQP
+TQP-TCT-MAR,TQP-TCT,Phòng Marketing -  Tổng công ty TQP
+TQP-TCT-CSKH,TQP-TCT,Phòng chăm sóc KH -  Tổng công ty TQP
+TQP-TCT-IT,TQP-TCT,Phòng Công nghệ thông tin -  Tổng công ty TQP
+TQP-TCT-HCNS,TQP-TCT,Phòng hành chính - Nhân sự -  Tổng công ty TQP
+TQP-TCT-ĐT,TQP-TCT,Phòng đầu tư -  Tổng công ty TQP
+TQP-TCT-PC,TQP-TCT,Phòng pháp chế -  Tổng công ty TQP
+MGV-TCT-GĐ,MGV-TCT,Phòng giám định - Bồi thường Tổng công ty MGV
+MGV-TCT-TBH,MGV-TCT,Phòng tái bảo hiểm - Tổng công ty MGV
+MGV-TCT-TCKT,MGV-TCT,Phòng tài chính - Kế toán -  Tổng công ty MGV
+MGV-TCT-QLRR,MGV-TCT,Phỏng quản lỳ rủi ro -  Tổng công ty MGV
+MGV-TCT-PTKD,MGV-TCT,Phòng phát triển kinh doanh -  Tổng công ty MGV
+MGV-TCT-KPP,MGV-TCT,Phòng kênh phân phối -  Tổng công ty MGV
+MGV-TCT-MAR,MGV-TCT,Phòng Marketing -  Tổng công ty MGV
+MGV-TCT-CSKH,MGV-TCT,Phòng chăm sóc KH -  Tổng công ty MGV
+MGV-TCT-IT,MGV-TCT,Phòng Công nghệ thông tin -  Tổng công ty MGV
+MGV-TCT-HCNS,MGV-TCT,Phòng hành chính - Nhân sự -  Tổng công ty MGV
+BSJ-TCT-ĐT,MGV-TCT,Phòng đầu tư -  Tổng công ty MGV
+MGV-TCT-PC,MGV-TCT,Phòng pháp chế -  Tổng công ty MGV
+TQP-HN-CN,TQP-HN,Con người - Chi nhánh Hà Nội - TQP
+TQP-HCM-CN,TQP-HCM,Con người - Chi nhánh Hồ Chí Minh - TQP
+TQP-DN-CN,TQP-DN,Con người - Chi nhánh Đà Nẵng - TQP
+TQP-HP-CN,TQP-HP,Con người - Chi nhánh Hải Phòng - TQP
+TQP-CT-CN,TQP-CT,Con người - Chi nhánh Cần Thơ - TQP
+TQP-NA-CN,TQP-NA,Con người - Chi nhánh Nghệ An - TQP
+TQP-BD-CN,TQP-BD,Con người - Chi nhánh Bình Dương - TQP
+TQP-QN-CN,TQP-QN,Con người - Chi nhánh Quảng Ninh - TQP
+TQP-TN-CN,TQP-TN,Con người - Chi nhánh Thái Nguyên - TQP
+TQP-KH-CN,TQP-KH,Con người - Chi nhánh Khánh Hoà - TQP
+MGV-HN-CN,MGV-HN,Con người - Chi nhánh Hà Nội - MGV
+MGV-HCM-CN,MGV-HCM,Con người - Chi nhánh Hồ Chí Minh - MGV
+MGV-DN-CN,MGV-DN,Con người - Chi nhánh Đà Nẵng - MGV
+MGV-HP-CN,MGV-HP,Con người - Chi nhánh Hải Phòng - MGV
+MGV-CT-CN,MGV-CT,Con người - Chi nhánh Cần Thơ - MGV
+MGV-NA-CN,MGV-NA,Con người - Chi nhánh Nghệ An - MGV
+MGV-BD-CN,MGV-BD,Con người - Chi nhánh Bình Dương - MGV
+MGV-QN-CN,MGV-QN,Con người - Chi nhánh Quảng Ninh - MGV
+MGV-TN-CN,MGV-TN,Con người - Chi nhánh Thái Nguyên - MGV
+MGV-KH-CN,MGV-KH,Con người - Chi nhánh Khánh Hoà - MGV
+MGV-TCT-CN,MGV-TCT,Con người - Phòng kinh doanh Tổng công ty MGV
+TQP-TCT-CN,TQP-TCT,Con người - Phòng kinh doanh Tổng công ty TQP

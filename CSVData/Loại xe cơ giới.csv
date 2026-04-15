@@ -1,0 +1,37 @@
+MA_LOAI_XE,TEN_LOAI_XE,MA_DANH_MUC_LOAI_XE,TEN_DANH_MUC_LOAI_XE
+XCG2B.1,Dưới 50 CC,XCG2B,xe cơ giới 2 bánh
+XCG2B.2,Từ 50 CC trở lên,XCG2B,xe cơ giới 2 bánh
+XCG2BGM.1,Xe máy điện,XCG2BGM,xe gắn máy
+XCG2BGM.2,Các loại xe còn lại,XCG2BGM,xe gắn máy
+XCG4B0KD.1,Loại xe dưới 6 chỗ,XCG4B0KD,xe ô tô không kinh doanh
+XCG4B0KD.2,Loại xe từ 6 đến 11 chỗ,XCG4B0KD,xe ô tô không kinh doanh
+XCG4B0KD.3,Loại xe từ 12 đến 24 chỗ,XCG4B0KD,xe ô tô không kinh doanh
+XCG4B0KD.4,Loại xe trên 24 chỗ,XCG4B0KD,xe ô tô không kinh doanh
+XCG4B0KD.5,"Xe vừa chở người vừa chở hàng (Pickup, minivan",XCG4B0KD,xe ô tô không kinh doanh
+XCG4BKD.1,Dưới 6 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.2,6 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.3,7 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.4,8 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.5,9 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.6,10 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.7,11 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.8,12 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.9,13 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.10,14 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.11,15 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.12,16 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.13,17 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.14,18 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.15,19 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.16,20 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.17,21 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.18,22 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.19,23 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.20,24 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.21,25 chỗ theo đăng ký,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.22,Trên 25 chỗ,XCG4BKD,xe ô tô kinh doanh
+XCG4BKD.23,"Xe vừa chở người vừa chở hàng (Pickup, minivan)",XCG4BKD,xe ô tô kinh doanh
+XCG4BCH.1,Dưới 3 tấn,XCG4BCH,xe tải
+XCG4BCH.2,Từ 3 đến 8 tấn,XCG4BCH,xe tải
+XCG4BCH.3,Trên 8 đến 15 tấn,XCG4BCH,xe tải
+XCG4BCH.4,Trên 15 tấn,XCG4BCH,xe tải
