@@ -1,0 +1,82 @@
+x-airflow-common: &airflow-common
+  build:
+    context: .
+    dockerfile: dockerfile.airflow
+  environment:
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-airflow/airflow
+    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    PYTHONPATH: /opt/airflow:/opt/airflow/src
+  user: "${AIRFLOW_UID:-50000}:0"
+  volumes:
+    - ./airflow/dags:/opt/airflow/dags
+    - ./airflow/logs:/opt/airflow/logs
+    - ./airflow/config:/opt/airflow/config
+    - ./airflow/plugins:/opt/airflow/plugins
+    - ./maildata/incoming:/opt/airflow/maildata/incoming
+    - ./maildata/processed:/opt/airflow/maildata/processed
+    - ./maildata/failed:/opt/airflow/maildata/failed
+    - ./processing/temp_pdfs:/opt/airflow/processing/temp_pdfs
+    - ./src:/opt/airflow/src
+
+services:
+  postgres-airflow:
+    image: postgres:14
+    container_name: postgres-airflow
+    environment:
+      POSTGRES_DB: airflow
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_airflow_data:/var/lib/postgresql/data
+
+  postgres_dataexp:
+    image: debezium/postgres:13
+    container_name: postgres_dataexp
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: weather
+    command: postgres -c wal_level=logical
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d
+
+  airflow-init:
+    <<: *airflow-common
+    command: >
+      bash -c "
+        airflow db init &&
+        airflow users create \
+          --username airflow \
+          --password airflow \
+          --firstname admin \
+          --lastname admin \
+          --role Admin \
+          --email admin@example.com || true
+      "
+    depends_on:
+      - postgres-airflow
+
+  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - "8085:8080"
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-scheduler:
+    <<: *airflow-common
+    command: scheduler
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+volumes:
+  postgres_airflow_data:
