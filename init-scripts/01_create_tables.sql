@@ -211,7 +211,6 @@ CREATE INDEX idx_ol_so_number   ON order_line(so_number);
 CREATE TABLE fact_sales (
     fact_id             BIGSERIAL       PRIMARY KEY,
     -- Time
-    date_key            INTEGER         NOT NULL GENERATED ALWAYS AS (EXTRACT(YEAR FROM order_date)::INTEGER * 100 + EXTRACT(MONTH FROM order_date)::INTEGER) STORED,
     order_date          DATE            NOT NULL,
     fiscal_year         SMALLINT        NOT NULL,
     fiscal_quarter      SMALLINT        NOT NULL,
@@ -252,7 +251,6 @@ CREATE INDEX idx_fact_product      ON fact_sales(product_code);
 CREATE INDEX idx_fact_group        ON fact_sales(group_code);
 CREATE INDEX idx_fact_province     ON fact_sales(province_id);
 CREATE INDEX idx_fact_so           ON fact_sales(so_number);
-CREATE INDEX idx_fact_date_key    ON fact_sales(date_key);
 
 
 -- ============================================================
@@ -359,7 +357,6 @@ FOR EACH ROW EXECUTE FUNCTION fn_update_order_totals();
 
 COMMENT ON FUNCTION fn_update_order_totals IS 'Tự động cập nhật total_amount, total_quantity, line_count trên sales_order sau khi thay đổi order_line';
 
-
 -- ============================================================
 -- 12. EMAIL LOG  (email_log)
 -- ============================================================
@@ -379,9 +376,3 @@ COMMENT ON COLUMN email_log.processing_status IS 'Success | Failed (reason)';
 
 CREATE INDEX idx_email_log_status ON email_log(processing_status);
 
-
--- ============================================================
--- 13. UNIQUE CONSTRAINTS — prevent duplicate inserts at DB level
--- ============================================================
-ALTER TABLE tnbike.sales_order
-    ADD CONSTRAINT uq_sales_order_so_number UNIQUE (so_number);

@@ -1,0 +1,95 @@
+# ── Python ─────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ── Virtual env ────────────────────────
+.venv/
+venv/
+env/
+
+# ── Environment / secrets ──────────────
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.crt
+secrets/
+credentials/
+
+# ── Airflow runtime ────────────────────
+airflow/logs/
+airflow/config/
+airflow/plugins/
+airflow/airflow.db
+airflow/airflow.cfg
+airflow/webserver_config.py
+airflow/standalone_admin_password.txt
+
+# Keep DAGs tracked
+!airflow/dags/
+!airflow/dags/*.py
+
+# ── Mail/order input data ──────────────
+maildata/incoming/*
+maildata/processed/*
+maildata/failed/*
+maildata/archive/*
+maildata/temp/*
+maildata/**/*.eml
+maildata/**/*.pdf
+maildata/**/*.rar
+
+# Keep folder placeholders
+!maildata/incoming/.gitkeep
+!maildata/processed/.gitkeep
+!maildata/failed/.gitkeep
+!maildata/.gitkeep
+
+# ── Your current raw data folders ───────
+CSVData/
+data/
+data/
+data/
+processing/
+pdfdata/
+
+# ── Large compressed/data files ─────────
+*.rar
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.jsonl
+
+# ── Logs ───────────────────────────────
+*.log
+pg_dataexp.log
+
+# ── Database dumps/backups ─────────────
+*.dump
+*.backup
+*.sql.gz
+
+# ── Docker/local volumes ───────────────
+postgres_data*/
+pgdata/
+minio_data/
+airflow_db_data/
+
+# ── OS/editor ──────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json

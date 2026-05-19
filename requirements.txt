@@ -1,0 +1,9 @@
+#requests
+#beautifulsoup4
+#lxml
+#apache-airflow-providers-http
+pdfplumber
+psycopg2-binary
+python-dateutil
+pandas
+apache-airflow-providers-postgres

@@ -7,6 +7,7 @@ x-airflow-common: &airflow-common
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-airflow/airflow
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__CORE__MAX_MAP_LENGTH: 2000
     PYTHONPATH: /opt/airflow:/opt/airflow/src
   user: "${AIRFLOW_UID:-50000}:0"
   volumes:
@@ -36,6 +37,7 @@ services:
   postgres_dataexp:
     image: debezium/postgres:13
     container_name: postgres_dataexp
+    restart: unless-stopped
     ports:
       - "5432:5432"
     environment:
@@ -44,13 +46,14 @@ services:
       POSTGRES_DB: weather
     command: postgres -c wal_level=logical
     volumes:
+      - postgres_dataexp_data:/var/lib/postgresql/data
       - ./init-scripts:/docker-entrypoint-initdb.d
 
   airflow-init:
     <<: *airflow-common
-    command: >
-      bash -c "
-        airflow db init &&
+    command: |
+      bash -c '
+        airflow db migrate &&
         airflow users create \
           --username airflow \
           --password airflow \
@@ -58,7 +61,7 @@ services:
           --lastname admin \
           --role Admin \
           --email admin@example.com || true
-      "
+      '
     depends_on:
       - postgres-airflow
 
@@ -80,3 +83,4 @@ services:
 
 volumes:
   postgres_airflow_data:
+  postgres_dataexp_data:
