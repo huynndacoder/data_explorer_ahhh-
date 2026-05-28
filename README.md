@@ -116,8 +116,7 @@ tnbike.email_log
 
 
 ## Kiến trúc hệ thống
-![Pipeline Architecture](docs/images/pipeline-architecture.png)
-
+![Pipeline Architecture](docs/images/pipeline-architecture.svg)
 ## Luồng DAG
 
 **DAG ID:** `email_order_pipeline`  
