@@ -117,6 +117,7 @@ tnbike.email_log
 
 ## Kiến trúc hệ thống
 ![Pipeline Architecture](docs/images/pipeline-architecture.svg)
+
 ## Luồng DAG
 
 **DAG ID:** `email_order_pipeline`  
@@ -134,80 +135,84 @@ tnbike.email_log
 
 ## Per-email ETL
 
+Mỗi email được xử lý như một đơn vị độc lập trong mapped task `process_single_email`.
+
 ```text
 .eml
-→ parse email metadata
-→ extract PDF attachment
-→ parse PDF header + order lines
-→ validate quantity, unit price, line total
-→ ensure product exists
-→ resolve/create customer by MST
-→ upsert sales_order
-→ replace order_line for that order
-→ write email_log
-→ move email to processed/failed
+→ đọc metadata của email
+→ trích xuất file PDF đính kèm
+→ đọc header PDF và bảng dòng hàng
+→ kiểm tra số lượng, đơn giá, thành tiền
+→ đảm bảo mã sản phẩm tồn tại trong product master
+→ phân giải hoặc tự tạo khách hàng theo MST
+→ upsert vào sales_order
+→ thay thế order_line của đơn hàng để hỗ trợ rerun idempotent
+→ ghi trạng thái xử lý vào email_log
+→ di chuyển email sang processed/ hoặc failed/
 ```
 
-### `extract.py`
+### `extract.py` - Trích xuất dữ liệu
 
-- Decode MIME headers
-- Extract plain-text email body
-- Save PDF attachment to temp folder
-- Extract anchor fields:
+- Decode MIME headers của email.
+- Lấy nội dung text/plain từ body email.
+- Lưu file PDF đính kèm vào thư mục tạm.
+- Trích xuất các trường neo từ email:
   - `so_number`
   - `MST`
-  - customer name
-  - customer address
-  - declared total amount
-- Parse PDF order lines with `pdfplumber`
-- Use regex fallback when table extraction fails
+  - tên khách hàng
+  - địa chỉ khách hàng
+  - tổng tiền khai báo trong email
+- Đọc bảng dòng hàng trong PDF bằng `pdfplumber`
+- Dùng regex fallback khi không đọc được bảng PDF theo cấu trúc bảng.
 
-### `validators.py`
+### `validators.py` - Kiểm tra hợp lệ
 
-- Validate required fields
-- Validate `quantity × unit_price ≈ line_total`
-- Validate total amount against email anchor
-- Ensure product codes exist in `tnbike.product`
-- Auto-create missing products as unresolved rows when needed
+- Kiểm tra các trường bắt buộc của từng dòng hàng.
+- Kiểm tra công thức: `quantity × unit_price ≈ line_total`
+- Đối chiếu tổng tiền trích xuất từ PDF với tổng tiền neo trong email.
+- Kiểm tra product_code có tồn tại trong `tnbike.product`
+- Tự tạo sản phẩm thiếu dưới dạng unresolved row khi cần: `UNRESOLVED PRODUCT {product_code}`
 
-### `loaders.py`
+### `loaders.py` - Ghi dữ liệu vào database
 
 - Upsert `sales_order`
-- Replace `order_line` for idempotent reruns
+- Xóa và ghi lại `order_line` của cùng đơn hàng để hỗ trợ rerun idempotent.
 - Upsert `email_log`
-- Resolve customer by MST
-- Auto-create customer when MST is valid but not found
+- Phân giải khách hàng bằng MST.
+- Tự tạo khách hàng mới khi MST hợp lệ nhưng chưa tồn tại trong tnbike.customer.
 
-### `router.py`
+### `router.py` - Phân loại file sau xử lý
 
-- Move successful `.eml` files to `processed/`
-- Move failed `.eml` files to `failed/`
-- Clean temporary PDF files
+- Di chuyển email xử lý thành công vào: `processed/`.
+- Di chuyển email xử lý thất bại vào `failed/`.
+- Dọn dẹp các file PDF tạm sau khi xử lý.
 
-## Error handling
+## Xử lý lỗi
 
-Business/data errors are handled inside each mapped email task. The task returns a status dict and writes to `email_log`.
+Các lỗi nghiệp vụ hoặc lỗi dữ liệu được xử lý ngay bên trong từng mapped task xử lý email. Thay vì làm fail toàn bộ DAG, task sẽ trả về một `status dict` và ghi trạng thái xử lý vào bảng `email_log`.
 
-Typical categories:
+Các nhóm lỗi phổ biến:
 
-| Category | Cause |
+| Nhóm lỗi | Nguyên nhân |
 |---|---|
-| `missing_customer` | Email body does not contain usable MST |
-| `missing_product` | PDF parsing failed to extract product codes |
-| `line_total_mismatch` | Extracted line totals do not match expected values |
-| `unknown` | Other unexpected business/data error |
+| `missing_customer` | Body email không chứa MST/mã số thuế hợp lệ để xác định khách hàng |
+| `missing_product` | Không trích xuất được `product_code` từ PDF |
+| `line_total_mismatch` | Thành tiền trích xuất không khớp với số lượng × đơn giá hoặc tổng tiền đơn hàng |
+| `unknown` | Các lỗi nghiệp vụ/dữ liệu khác ngoài các nhóm trên |
 
-Infrastructure/code errors should still fail Airflow normally.
+Các lỗi hạ tầng hoặc lỗi code nghiêm trọng, ví dụ PostgreSQL không kết nối được, lỗi import module, lỗi SQL warehouse, vẫn được để Airflow fail bình thường để dễ phát hiện và xử lý.
 
-## Silver layer
+---
 
-Silver is used for controlled data-quality improvement after ingestion.
+## Lớp Silver
 
-### Customer name cleanup
+Lớp Silver được dùng để làm sạch, chuẩn hóa và làm giàu dữ liệu sau khi dữ liệu đã được nạp vào các bảng gốc.
 
-Removes accidental field labels from customer names.
+### Chuẩn hóa tên khách hàng
 
-Examples:
+Một số email có tên khách hàng bị giữ lại nhãn trường như `Tên :` hoặc `Đại lý :`. Silver layer chuẩn hóa các giá trị này trước khi dùng cho phân tích.
+
+Ví dụ:
 
 ```text
 Tên : CÔNG TY TNHH PHÚC AN
@@ -217,135 +222,6 @@ Tên : CÔNG TY TNHH PHÚC AN
 → CỬA HÀNG XE ĐẠP A
 ```
 
-### Product name enrichment
-
-Some March PDF product codes did not exist in the original product master. These products were initially created as:
-
-```text
-UNRESOLVED PRODUCT {product_code}
-```
-
-The Silver layer applies manually verified product names for 18 unresolved products.
-
-### Product hierarchy enrichment
-
-Some products had `line_id = NULL`, which caused missing `line_name`, `group_code`, and `group_name` in fact tables.
-
-The Silver layer applies 36 high-confidence mappings:
-
-```text
-product_code → product_line.line_id
-```
-
-Only products that clearly match an existing product line are mapped. Products whose catalogue lines are absent remain NULL intentionally.
-
-Validated impact:
-
-```text
-Before enrichment:
-- 5,355 fact rows without product line
-- 25.28B VND affected revenue
-
-After enrichment:
-- 2,948 fact rows without product line
-- 11.53B VND affected revenue
-```
-
-### Silver geography
-
-The original `tnbike.province` table is preserved as a legacy/source table. It contains typos, duplicates, old province names, city-level values, and address fragments, so it is not used as the trusted geography layer.
-
-Silver geography adds:
-
-| Table | Purpose |
-|---|---|
-| `silver_province` | Canonical 34 post-merger province/city units |
-| `silver_customer_geo` | Mapping from customer to canonical province code |
-
-Matching priority:
-
-```text
-customer.address
-→ legacy province name fallback
-→ normalized alias lookup
-→ silver province code
-```
-
-Validated result:
-
-```text
-silver_province_count = 34
-customer_count = 798
-mapped_customer_count = 797
-unmatched_customer_count = 1
-```
-
-The only unmatched customer has no address and no legacy province evidence, so it is intentionally left unknown.
-
-## Fact tables
-
-### `fact_sales`
-
-`fact_sales` is the required flat fact table following the provided schema. It preserves the original/legacy geography structure from the provided database.
-
-Use this table for compatibility with the organiser schema.
-
-### `gold_fact_sales`
-
-`gold_fact_sales` is the cleaned analytical fact table.
-
-It keeps both geography systems explicitly:
-
-```text
-legacy_province_id
-legacy_province_name
-legacy_region
-
-silver_province_code
-silver_province_name
-silver_region
-geo_match_method
-geo_confidence
-```
-
-This avoids mixing old surrogate `province_id` values with new canonical province names.
-
-## Database schema
-
-Main database:
-
-```text
-Database: weather
-Schema: tnbike
-Host: postgres_dataexp
-Port: 5432
-```
-
-Main tables:
-
-| Table | Type | Notes |
-|---|---|---|
-| `product_group` | Dimension | Product group level |
-| `product_line` | Dimension | Product line/catalogue level |
-| `product` | Dimension | SKU-level product master |
-| `province` | Legacy dimension | Original geography table |
-| `customer` | Dimension | Dealer/customer master |
-| `sales_order` | Fact header | Order header |
-| `order_line` | Fact detail | Order lines |
-| `fact_sales` | Fact flat | Required denormalized fact table |
-| `gold_fact_sales` | Fact flat | Clean analytics fact table |
-| `email_log` | Log | Email processing status |
-| `silver_province` | Silver dimension | Canonical geography |
-| `silver_customer_geo` | Silver bridge | Customer-to-province mapping |
-
-The original row counts from the organiser-provided database are documented in:
-
-```text
-tnbike_database_schema.md
-```
-
-After March 2026 ingestion, row counts will increase.
-
 ## Project structure
 
 ```text
@@ -353,6 +229,9 @@ DataExplorer/
 ├── airflow/
 │   └── dags/
 │       └── email_pipeline_dag.py
+├── docs/
+│   └── images/
+│       └── pipeline-architecture.svg
 ├── init-scripts/
 │   ├── 01_create_tables.sql
 │   ├── 02_import_data.sql
@@ -378,9 +257,10 @@ DataExplorer/
 └── README.md
 ```
 
-## Manual validation
+## Kiểm tra thủ công
+Sau khi chạy DAG, có thể dùng các truy vấn dưới đây để kiểm tra nhanh trạng thái pipeline và chất lượng dữ liệu sau xử lý.
 
-### Email processing status
+### Trạng thái xử lý email
 
 ```sql
 SELECT processing_status, COUNT(*)
@@ -389,7 +269,7 @@ GROUP BY processing_status
 ORDER BY processing_status;
 ```
 
-### March 2026 orders
+### Số đơn hàng tháng 3/2026
 
 ```sql
 SELECT COUNT(*) AS march_order_count
@@ -398,7 +278,7 @@ WHERE order_date >= DATE '2026-03-01'
   AND order_date < DATE '2026-04-01';
 ```
 
-### March 2026 order lines
+### Số dòng hàng tháng 3/2026
 
 ```sql
 SELECT COUNT(*) AS march_order_line_count
@@ -409,7 +289,7 @@ WHERE so.order_date >= DATE '2026-03-01'
   AND so.order_date < DATE '2026-04-01';
 ```
 
-### March 2026 fact rows
+### Số dòng fact tháng 3/2026
 
 ```sql
 SELECT COUNT(*) AS march_fact_rows
@@ -418,7 +298,7 @@ WHERE order_date >= DATE '2026-03-01'
   AND order_date < DATE '2026-04-01';
 ```
 
-### Silver geography coverage
+### Độ phủ địa lý của layer Silver
 
 ```sql
 SELECT
@@ -430,7 +310,7 @@ LEFT JOIN tnbike.silver_customer_geo scg
     ON c.customer_code = scg.customer_code;
 ```
 
-### Product hierarchy coverage
+### Độ phủ phân cấp sản phẩm
 
 ```sql
 SELECT
@@ -441,7 +321,7 @@ FROM tnbike.fact_sales
 WHERE line_id_fk IS NULL;
 ```
 
-### Remaining unmapped product lines
+### Các sản phẩm thiếu product line còn lại
 
 ```sql
 SELECT
@@ -457,9 +337,9 @@ ORDER BY total_revenue DESC
 LIMIT 30;
 ```
 
-## Manual Silver test
+## Kiểm tra thủ công lớp Silver
 
-Run inside Airflow scheduler container:
+Chạy lệnh sau bên trong container Airflow scheduler:
 
 ```bash
 docker exec -it dataexplorer-airflow-scheduler-1 bash
@@ -467,7 +347,7 @@ cd /opt/airflow
 PYTHONPATH=/opt/airflow/src python -c "from silver import run_silver_layer; run_silver_layer()"
 ```
 
-Expected current result:
+Kết quả hiện tại kỳ vọng:
 
 ```text
 unresolved_product_count = 0
@@ -476,11 +356,11 @@ mapped_customer_count = 797
 unmatched_customer_count = 1
 ```
 
-## Development notes
+## Ghi chú phát triển
 
-### Airflow user creation
+### Tạo lại Airflow user
 
-If the Airflow user is missing:
+Nếu tài khoản Airflow chưa được tạo tự động, có thể tạo thủ công bằng lệnh:
 
 ```bash
 docker exec -it dataexplorer-airflow-scheduler-1 airflow users create \
@@ -492,7 +372,7 @@ docker exec -it dataexplorer-airflow-scheduler-1 airflow users create \
   --email admin@example.com
 ```
 
-Check users:
+Kiểm tra danh sách user:
 
 ```bash
 docker exec -it dataexplorer-airflow-scheduler-1 airflow users list
@@ -500,16 +380,16 @@ docker exec -it dataexplorer-airflow-scheduler-1 airflow users list
 
 ### Moving processed emails back for reruns
 
-If emails have already been processed and you want to rerun the DAG:
+Nếu email đã được chuyển sang processed/ và cần chạy lại DAG từ đầu:
 
 ```bash
 docker exec -it dataexplorer-airflow-scheduler-1 bash
 mv /opt/airflow/maildata/processed/*.eml /opt/airflow/maildata/incoming/
 ```
 
-## Git notes
+## Ghi chú Git
 
-Do not commit raw or generated data:
+Không commit dữ liệu thô, file sinh ra trong runtime hoặc file cấu hình nhạy cảm:
 
 ```text
 .env
@@ -525,7 +405,7 @@ processing/
 *.log
 ```
 
-Keep these tracked:
+Các thành phần nên được commit:
 
 ```text
 src/
@@ -538,7 +418,7 @@ README.md
 tnbike_database_schema.md
 ```
 
-## Status
+## Trạng thái hiện tại
 
 Current status:
 
@@ -549,10 +429,10 @@ fact_sales refresh: functional
 gold_fact_sales: analytics-ready layer using Silver geography
 ```
 
-Known remaining data-quality limitations:
+Các giới hạn chất lượng dữ liệu còn lại:
 
 ```text
-- 1 customer cannot be mapped to province because both address and legacy province are NULL.
-- Some products remain without product_line because their catalogue lines are absent from the provided product_line table.
-- Original province table is preserved as dirty legacy/source geography.
+- 1 khách hàng chưa thể ánh xạ địa lý vì cả address và legacy province đều NULL.
+- Một số sản phẩm vẫn chưa có product_line vì dòng catalogue tương ứng không tồn tại trong bảng product_line được cung cấp.
+- Bảng province gốc được giữ lại như legacy/source geography, nhưng không được xem là nguồn địa lý chuẩn cho phân tích sạch.
 ```
