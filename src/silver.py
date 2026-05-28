@@ -23,6 +23,51 @@ MANUAL_PRODUCT_NAME_MAP = {
     "TP0016.05.24.01": "Xe đạp Thống Nhất GN 05 24",
 }
 
+MANUAL_PRODUCT_LINE_MAP = {
+    # LD
+    "000230002013000": 15,  # LD 26 Pastel Xanh -> Xe LD 26
+    "000230002009000": 15,  # LD 26 Pastel Hồng -> Xe LD 26
+    "000231002023000": 15,  # LD 26 We Bare Bears Kem -> Xe LD 26
+    "000231002002000": 15,  # LD 26 We Bare Bears Trắng -> Xe LD 26
+    "000226002014000": 13,  # LD 24-01 -> Xe LD 24-01_2023
+    "000227002009000": 14,  # LD 24-02 -> Xe LD 24-02
+    # MTB / Sport
+    "000331002001000": 18,  # MTB 26-02 -> Xe MTB 26 02
+    "1000400050010000": 74,  # MTB SPD 27.5 -> Xe MTB SPD 27.5
+    "1000400050080010": 74,
+    "1000400050200000": 74,
+    "1000400050020000": 74,
+    "1000400050080000": 74,
+    "1000400050090000": 74,
+    "1000400050040003": 74,
+    # Road / GRX
+    "1000320050010000": 75,  # Road RPD 700C V5 -> Xe Road RPD 700C
+    "1000320050020000": 75,
+    "1000320050200000": 75,
+    "1010020000220000": 71,  # GRX AT 27,5_2.0 -> Xe GRX AT 27,5_2.0
+    # Super
+    "000333002008000": 70,  # Super 26 S -> Xe Super 26
+    "000333002022002": 70,
+    "000333002001002": 70,
+    "000333002008003": 70,
+    "000333002022003": 70,
+    "000333002001003": 70,
+    # New
+    "000225002007000": 21,  # New 26 -> Xe New 26
+    "000225002004003": 21,
+    "000224002007000": 20,  # New 24 -> Xe New 24
+    # TE
+    "TP0022.02.16.00": 35,  # TE 16 02 -> Xe TE 1602
+    "TP0022.03.16.00": 36,  # TE 16 03 -> Xe TE 16-03
+    # Other confident
+    "TP0017.06.27.04": 58,  # The Flash -> Xe FLASH
+    "TP0099.0000567": 76,  # SLX 26 01 -> Xe SLX 26-01
+    "000218003022001": 62,  # GN 06-27 2.0 Pro Shimano -> exact/probable
+    "000306002022000": 27,  # MTB 20-05 -> Xe MTB 20-05
+    "000419002015000": 19,  # nam 0209 -> Xe Nam
+    "000407002019000": 22,  # nữ 0209 -> Xe Nữ
+    "000407002010000": 22,
+}
 
 
 def apply_manual_product_names() -> int:
@@ -82,6 +127,46 @@ def apply_manual_product_names() -> int:
     print(f"[SILVER_PRODUCT_NAMES] updated_count={updated_count}")
     return updated_count
 
+
+def apply_manual_product_line_mapping() -> int:
+    """
+    Fill product.line_id for manually verified product_code -> line_id mappings.
+
+    Only updates products where line_id IS NULL.
+    Safe to run multiple times.
+    """
+    if not MANUAL_PRODUCT_LINE_MAP:
+        print("[SILVER_PRODUCT_LINE] no mappings configured")
+        return 0
+
+    updated_count = 0
+
+    with _conn() as conn, conn.cursor() as cur:
+        for product_code, line_id in MANUAL_PRODUCT_LINE_MAP.items():
+            cur.execute(
+                """
+                UPDATE tnbike.product
+                SET line_id = %s
+                WHERE product_code = %s
+                  AND line_id IS NULL
+                """,
+                (line_id, product_code),
+            )
+
+            updated_count += cur.rowcount
+
+            if cur.rowcount > 0:
+                print(
+                    f"[SILVER_PRODUCT_LINE_UPDATE] "
+                    f"product_code={product_code} line_id={line_id}"
+                )
+
+        conn.commit()
+
+    print(f"[SILVER_PRODUCT_LINE] updated_count={updated_count}")
+    return updated_count
+
+
 def unresolved_product_summary() -> dict:
     """
     Return summary of unresolved product rows after manual product-name fixes.
@@ -112,6 +197,7 @@ def unresolved_product_summary() -> dict:
 
     print(f"[SILVER_UNRESOLVED_PRODUCT_SUMMARY] {summary}")
     return summary
+
 
 def normalize_customer_names() -> int:
     """
@@ -147,13 +233,13 @@ def normalize_customer_names() -> int:
     print(f"[SILVER_CUSTOMER_NAME_NORMALIZE] updated_count={updated_count}")
     return updated_count
 
+
 SILVER_PROVINCE_SOURCE = "Canonical Silver geography list for DataExplorer 2026"
 
 
 SILVER_PROVINCES = [
     # province_code, province_name, province_type, region
     # Official post-merger 34 provincial-level units, effective from 2025-07-01.
-
     # Miền Bắc
     ("01", "Hà Nội", "Thành phố", "Miền Bắc"),
     ("04", "Cao Bằng", "Tỉnh", "Miền Bắc"),
@@ -170,7 +256,6 @@ SILVER_PROVINCES = [
     ("31", "Hải Phòng", "Thành phố", "Miền Bắc"),
     ("33", "Hưng Yên", "Tỉnh", "Miền Bắc"),
     ("37", "Ninh Bình", "Tỉnh", "Miền Bắc"),
-
     # Miền Trung
     ("38", "Thanh Hóa", "Tỉnh", "Miền Trung"),
     ("40", "Nghệ An", "Tỉnh", "Miền Trung"),
@@ -183,7 +268,6 @@ SILVER_PROVINCES = [
     ("56", "Khánh Hòa", "Tỉnh", "Miền Trung"),
     ("66", "Đắk Lắk", "Tỉnh", "Miền Trung"),
     ("68", "Lâm Đồng", "Tỉnh", "Miền Trung"),
-
     # Miền Nam
     ("75", "Đồng Nai", "Tỉnh", "Miền Nam"),
     ("79", "Thành phố Hồ Chí Minh", "Thành phố", "Miền Nam"),
@@ -199,177 +283,140 @@ PROVINCE_ALIASES = {
     # =========================
     # MIỀN BẮC
     # =========================
-
     # 01 - Hà Nội, unchanged
     "ha noi": "01",
     "tp ha noi": "01",
     "thanh pho ha noi": "01",
     "ha no": "01",  # dirty spelling from source data
-
     # 04 - Cao Bằng, unchanged
     "cao bang": "04",
-
     # 08 - Tuyên Quang, merged from old Tuyên Quang + Hà Giang
     "tuyen quang": "08",
     "ha giang": "08",  # merged into Tuyên Quang
-
     # 11 - Điện Biên, unchanged
     "dien bien": "11",
-
     # 12 - Lai Châu, unchanged
     "lai chau": "12",
-
     # 14 - Sơn La, unchanged
     "son la": "14",
-
     # 15 - Lào Cai, merged from old Lào Cai + Yên Bái
     "lao cai": "15",
     "yen bai": "15",  # merged into Lào Cai
-
     # 19 - Thái Nguyên, merged from old Thái Nguyên + Bắc Kạn
     "thai nguyen": "19",
     "bac kan": "19",  # merged into Thái Nguyên
-
     # 20 - Lạng Sơn, unchanged
     "lang son": "20",
-
     # 22 - Quảng Ninh, unchanged
     "quang ninh": "22",
     "quang ninhso": "22",  # dirty spelling from source data
-
     # 24 - Bắc Ninh, merged from old Bắc Ninh + Bắc Giang
     "bac ninh": "24",
     "bac giang": "24",  # merged into Bắc Ninh
-
     # 25 - Phú Thọ, merged from old Phú Thọ + Vĩnh Phúc + Hòa Bình
     "phu tho": "25",
     "vinh phuc": "25",  # merged into Phú Thọ
-    "hoa binh": "25",   # merged into Phú Thọ
-
+    "hoa binh": "25",  # merged into Phú Thọ
     # 31 - Hải Phòng, merged from old Hải Phòng + Hải Dương
     "hai phong": "31",
     "tp hai phong": "31",
     "thanh pho hai phong": "31",
     "hai duong": "31",  # merged into Hải Phòng
-    "hai duon": "31",   # dirty spelling from source data
-
+    "hai duon": "31",  # dirty spelling from source data
     # 33 - Hưng Yên, merged from old Hưng Yên + Thái Bình
     "hung yen": "33",
     "thai binh": "33",  # merged into Hưng Yên
-
     # 37 - Ninh Bình, merged from old Ninh Bình + Hà Nam + Nam Định
     "ninh binh": "37",
-    "ha nam": "37",    # merged into Ninh Bình
+    "ha nam": "37",  # merged into Ninh Bình
     "nam dinh": "37",  # merged into Ninh Bình
-
-
     # =========================
     # MIỀN TRUNG
     # =========================
-
     # 38 - Thanh Hóa, unchanged
     "thanh hoa": "38",
-
     # 40 - Nghệ An, unchanged
     "nghe an": "40",
     "nghe a": "40",  # dirty spelling from source data
-
     # 42 - Hà Tĩnh, unchanged
     "ha tinh": "42",
-
     # 44 - Quảng Trị, merged from old Quảng Trị + Quảng Bình
     "quang tri": "44",
     "quang binh": "44",  # merged into Quảng Trị
-
     # 46 - Huế, renamed/normalized from Thừa Thiên Huế / TP Huế
     "hue": "46",
     "tp hue": "46",
     "thanh pho hue": "46",
     "thua thien hue": "46",
-
     # 48 - Đà Nẵng, merged from old Đà Nẵng + Quảng Nam
     "da nang": "48",
     "tp da nang": "48",
     "thanh pho da nang": "48",
     "quang nam": "48",  # merged into Đà Nẵng
     "hoang sa": "48",  # special district under Đà Nẵng, not Khánh Hòa
-
     # 51 - Quảng Ngãi, merged from old Quảng Ngãi + Kon Tum
     "quang ngai": "51",
     "kon tum": "51",  # merged into Quảng Ngãi
-
     # 52 - Gia Lai, merged from old Gia Lai + Bình Định
     "gia lai": "52",
     "binh dinh": "52",  # merged into Gia Lai
-
     # 56 - Khánh Hòa, merged from old Khánh Hòa + Ninh Thuận
     "khanh hoa": "56",
     "ninh thuan": "56",  # merged into Khánh Hòa
-    "truong sa": "56",   # special district under Khánh Hòa
-
+    "truong sa": "56",  # special district under Khánh Hòa
     # 66 - Đắk Lắk, merged from old Đắk Lắk + Phú Yên
     "dak lak": "66",
     "dac lac": "66",
     "đak lak": "66",
     "đac lac": "66",
     "phu yen": "66",  # merged into Đắk Lắk
-
     # 68 - Lâm Đồng, merged from old Lâm Đồng + Bình Thuận + Đắk Nông
     "lam dong": "68",
     "binh thuan": "68",  # merged into Lâm Đồng
     "phan thiet": "68",  # old city in Bình Thuận, now maps to Lâm Đồng
-    "dak nong": "68",    # merged into Lâm Đồng
-    "dac nong": "68",    # spelling variant
-
-
+    "dak nong": "68",  # merged into Lâm Đồng
+    "dac nong": "68",  # spelling variant
     # =========================
     # MIỀN NAM
     # =========================
-
     # 75 - Đồng Nai, merged from old Đồng Nai + Bình Phước
     "dong nai": "75",
     "binh phuoc": "75",  # merged into Đồng Nai
-
     # 79 - Thành phố Hồ Chí Minh, merged from old HCMC + Bình Dương + Bà Rịa - Vũng Tàu
     "ho chi minh": "79",
     "tp ho chi minh": "79",
     "thanh pho ho chi minh": "79",
     "tphcm": "79",
     "sai gon": "79",
-    "binh duong": "79",       # merged into HCMC
-    "thu dau mot": "79",     # old city in Bình Dương, now maps to HCMC
-    "ba ria vung tau": "79", # merged into HCMC
-    "vung tau": "79",        # old city in Bà Rịa - Vũng Tàu, now maps to HCMC
-
+    "binh duong": "79",  # merged into HCMC
+    "thu dau mot": "79",  # old city in Bình Dương, now maps to HCMC
+    "ba ria vung tau": "79",  # merged into HCMC
+    "vung tau": "79",  # old city in Bà Rịa - Vũng Tàu, now maps to HCMC
     # 80 - Tây Ninh, merged from old Tây Ninh + Long An
     "tay ninh": "80",
     "long an": "80",  # merged into Tây Ninh
-
     # 82 - Vĩnh Long, merged from old Vĩnh Long + Bến Tre + Trà Vinh
     "vinh long": "82",
     "ben tre": "82",  # merged into Vĩnh Long
-    "tra vinh": "82", # merged into Vĩnh Long
-
+    "tra vinh": "82",  # merged into Vĩnh Long
     # 86 - Cần Thơ, merged from old Cần Thơ + Hậu Giang + Sóc Trăng
     "can tho": "86",
     "tp can tho": "86",
     "thanh pho can tho": "86",
-    "hau giang": "86", # merged into Cần Thơ
-    "soc trang": "86", # merged into Cần Thơ
-
+    "hau giang": "86",  # merged into Cần Thơ
+    "soc trang": "86",  # merged into Cần Thơ
     # 89 - Đồng Tháp, merged from old Đồng Tháp + Tiền Giang
     "dong thap": "89",
     "tien giang": "89",  # merged into Đồng Tháp
-
     # 91 - An Giang, merged from old An Giang + Kiên Giang
     "an giang": "91",
-    "kien giang": "91", # merged into An Giang
-    "phu quoc": "91",   # old city in Kiên Giang, now maps to An Giang
-
+    "kien giang": "91",  # merged into An Giang
+    "phu quoc": "91",  # old city in Kiên Giang, now maps to An Giang
     # 96 - Cà Mau, merged from old Cà Mau + Bạc Liêu
     "ca mau": "96",
     "bac lieu": "96",  # merged into Cà Mau
 }
+
 
 def _strip_accents(text: str) -> str:
     text = unicodedata.normalize("NFD", text)
@@ -409,6 +456,7 @@ def _infer_province_from_text(text: str | None) -> tuple[str | None, str | None]
             return PROVINCE_ALIASES[alias], alias
 
     return None, None
+
 
 def seed_silver_provinces() -> int:
     """
@@ -454,6 +502,7 @@ def seed_silver_provinces() -> int:
     print(f"[SILVER_PROVINCE_SEED] upsert_count={upsert_count}")
     return upsert_count
 
+
 def build_silver_customer_geo() -> int:
     """
     Build customer_code -> canonical province_code mapping.
@@ -492,7 +541,9 @@ def build_silver_customer_geo() -> int:
             match_method = "address"
 
             if province_code is None and legacy_province_name:
-                province_code, matched_alias = _infer_province_from_text(legacy_province_name)
+                province_code, matched_alias = _infer_province_from_text(
+                    legacy_province_name
+                )
                 match_method = "legacy_province_name"
 
             if province_code is None:
@@ -597,6 +648,7 @@ def run_silver_layer() -> dict:
 
     result["normalized_customer_names"] = normalize_customer_names()
     result["manual_product_names_updated"] = apply_manual_product_names()
+    result["manual_product_line_updated"] = apply_manual_product_line_mapping()
     result["unresolved_products"] = unresolved_product_summary()
 
     result["silver_customer_geo_built"] = build_silver_customer_geo()
